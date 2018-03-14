@@ -1,15 +1,13 @@
 import React from 'react';
-
-import './defaultButton.scss';
+import styled from 'styled-components';
 
 const DefaultButton = ({ children, onClick = () => {} }) => {
-  const handleClick = () => {
-    onClick();
-  };
   return (
     <button
-      className="DefaultButton"
-      onClick={handleClick}
+      className={'w3-btn w3-border w3-text-white'}
+      onClick={() => {
+        onClick();
+      }}
     >
       {children}
     </button>

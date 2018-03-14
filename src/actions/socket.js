@@ -1,5 +1,5 @@
 import io from 'socket.io-client';
-const socket = io.connect('http://localhost:30003');
+// const socket = io.connect('http://localhost:30003');
 
 export function refreshUsers(users) {
   return {

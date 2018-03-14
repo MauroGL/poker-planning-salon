@@ -6,44 +6,45 @@ import PropTypes from 'prop-types';
 
 // Actions.
 import { navigateTo, updateUserName } from '../../actions/index';
+
+// Components.
+import StandardInput from '../../components/StandardInput/StandardInput';
+
 // Styles.
 import './start.scss';
+import DefaultButton from '../../components/DefaultButton/DefaultButton';
 
 class Start extends React.Component {
-
   constructor(props) {
     super(props);
   }
 
   render() {
-
-    const goToGame = () => {
-      this.props.navigation.navigateTo('home');
-    };
-
-    const onNameChange = (value) => {
-      this.props.typing.updateUserName(value.target.value);      
-    };
-
     return (
-      <div className="bgimg w3-green w3-display-container w3-text-white">
+      <div className="bgimg w3-green w3-display-container w3-text-white w3-center">
         <div className="w3-display-topleft w3-padding-large w3-xlarge">
           Logo
         </div>
         <div className="w3-display-middle">
-          <h1 className="w3-jumbo w3-animate-top">{'Poker Planning'}</h1>
+          <h1 className="w3-jumbo w3-animate-top">{'Poker Planning Salon'}</h1>
           <hr className="w3-border-grey hr-large" />
-          <form className="w3-container w3-center" onSubmit={goToGame}>
-            <p>
-              <label className="w3-large">{'First, Enter you name:'}</label>
-              <br />
-              <input className="w3-input" type="text" onChange={ onNameChange } defaultValue={this.props.userName} />
-            </p>
-            <button type="submit" className="w3-btn w3-border w3-text-white ">{' Press to begin! '}</button>
-          </form>
+          <label className="w3-large">{'First, Enter you name:'}</label>
+          <StandardInput
+            onChange={this.props.typing.updateUserName}
+            userName={this.props.userName}
+          />
+          {(this.props.userName && this.props.userName.length > 2) ?
+            <DefaultButton
+              onClick={() => {
+                this.props.navigation.navigateTo('home');
+              }}
+            >
+              {'Click to begin!'}
+            </DefaultButton> :
+            null
+          }
         </div>
       </div>
-
     );
   }
 }
